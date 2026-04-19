@@ -68,7 +68,7 @@ class Tablets:
         except Exception:
             pass
         self.__get_libwacom_data()
-        assert self.device_data, QMessageBox(QMessageBox.Warning, "Unknown Device",  "Device data not found.")
+        assert self.device_data, QMessageBox(QMessageBox.Warning, "Unknown Device", "Device data not found.").exec()
         self.tablets = {}
         for device, inputs in detected.items():
             if device[-4:] == '(WL)':
@@ -168,10 +168,12 @@ class Tablets:
                         self.device_data[cur_device]['svg'] = line.split('=')[1]
                     # Reversible means it can be flipped
                     elif "Reversible=" in line:
-                        if "true" in line:
-                            self.device_data[cur_device]['stylus']['rotate'] = True
-                        else:
-                            self.device_data[cur_device]['stylus']['rotate'] = False
+                        # allows rotate in any device
+                        self.device_data[cur_device]['stylus']['rotate'] = True
+                        # if "true" in line:
+                        #     self.device_data[cur_device]['stylus']['rotate'] = True
+                        # else:
+                        #     self.device_data[cur_device]['stylus']['rotate'] = False
                     elif "Ring=true" in line:
                         self.device_data[cur_device]['pad']['buttons']['RingUp'] = \
                             {'bid': 'AbsWheelUp', 'orient': 'Left'}

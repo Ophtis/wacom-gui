@@ -495,8 +495,8 @@ class Mapping(QWidget):
         # set rotation value
         if 'rotate' in self.settings.keys():
             if self.settings['rotate'] == 'False':
-                self.orient.hide()
-                self.orient_lbl.hide()
+                # self.orient.hide()
+                # self.orient_lbl.hide()
                 del self.settings['rotate']
             elif self.settings['rotate'] == 'none':
                 self.orient.setCurrentIndex(0)

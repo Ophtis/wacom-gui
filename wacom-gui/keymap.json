@@ -19,7 +19,8 @@
 		"button 4": "Scroll Up",
 		"button 5": "Scroll Down",
 		"button 6": "Pan Left",
-		"button 7": "Pan Right"
+		"button 7": "Pan Right",
+        "pan": "Pan"
 	},
 	"Letters": {
 		"a": "A",
