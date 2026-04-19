@@ -68,61 +68,68 @@ class Tablets:
         except Exception:
             pass
         self.__get_libwacom_data()
+        assert self.device_data, QMessageBox(QMessageBox.Warning, "Unknown Device",  "Device data not found.")
         self.tablets = {}
         for device, inputs in detected.items():
             if device[-4:] == '(WL)':
                 dev_type = device[:-5]
             else:
                 dev_type = device
-            try:
-                # Cintiq Pro 24 hack
-                if dev_type == 'Wacom Cintiq Pro 24':
-                    if 'Wacom Cintiq Pro 24 P' in self.device_data.keys():
-                        dev_type = 'Wacom Cintiq Pro 24 P'
-                    else:
-                        dev_type = 'Wacom Cintiq Pro 24 PT'
-                # ExpressKeys hack
-                if dev_type == 'Wacom Express Key Remote':
-                    dev_type = 'Wacom ExpressKey Remote'
-                # PTH-660/PTH-860 hack
-                if dev_type.startswith('Wacom Intuos Pro') :
-                    if dev_type not in self.device_data.keys():
-                        dev_type = dev_type.replace("Pro", "Pro 2")
-                # One Wacom hack
-                if dev_type == 'Wacom One by Wacom S':
-                    dev_type = 'One by Wacom (small)'
-                devID = self.device_data[dev_type]['devID']
-                if self.device_data[dev_type]['devID'] not in self.tablets.keys():
-                    self.tablets[devID] = []
-                # assume if it's the same device it has the same inputs for all connected
-                if 'pad' in detected[device]:
-                    dev_count = detected[device]['pad']['id'].__len__()
-                else :
-                    dev_count = 1
-                for x in range(0, dev_count):
-                    idx = self.tablets[devID].__len__()
-                    self.tablets[devID].append(copy.deepcopy(self.device_data[dev_type]))
-                    self.tablets[devID][idx]['cname'] = device
-                for dev_input in inputs:
-                    idx = self.tablets[devID].__len__() - detected[device][dev_input]['id'].__len__()
-                    for instance in sorted(detected[device][dev_input]['id']):
-                        self.tablets[devID][idx][dev_input]['id'] = instance
-                        idx = idx + 1
-                # remove devices that are not available
-                for dev in self.tablets.keys():
-                    for device in self.tablets[dev]:
-                        for id in ['touch', 'stylus', 'eraser', 'cursor', 'pad']:
-                            if id in device.keys():
-                                if 'id' not in device[id].keys():
-                                    del device[id]
-            except:
-                warning = QMessageBox(QMessageBox.Warning, "Unknown Device",
-                                      "Device information for \"%s\" not found." % dev_type)
-                warning.exec_()
+
+            # Cintiq Pro 24 hack
+            if dev_type == 'Wacom Cintiq Pro 24':
+                if 'Wacom Cintiq Pro 24 P' in self.device_data.keys():
+                    dev_type = 'Wacom Cintiq Pro 24 P'
+                else:
+                    dev_type = 'Wacom Cintiq Pro 24 PT'
+            # ExpressKeys hack
+            if dev_type == 'Wacom Express Key Remote':
+                dev_type = 'Wacom ExpressKey Remote'
+            # PTH-660/PTH-860 hack
+            if dev_type.startswith('Wacom Intuos Pro') :
+                if dev_type not in self.device_data.keys():
+                    dev_type = dev_type.replace("Pro", "Pro 2")
+            # One Wacom hack
+            if dev_type == 'Wacom One by Wacom S':
+                dev_type = 'One by Wacom (small)'
+            devID = self.device_data[dev_type]['devID']
+            if self.device_data[dev_type]['devID'] not in self.tablets.keys():
+                self.tablets[devID] = []
+            # assume if it's the same device it has the same inputs for all connected
+            if 'pad' in detected[device]:
+                dev_count = detected[device]['pad']['id'].__len__()
+            else :
+                dev_count = 1
+            for x in range(0, dev_count):
+                idx = self.tablets[devID].__len__()
+                self.tablets[devID].append(copy.deepcopy(self.device_data[dev_type]))
+                self.tablets[devID][idx]['cname'] = device
+            for dev_input in inputs:
+                idx = self.tablets[devID].__len__() - detected[device][dev_input]['id'].__len__()
+                for instance in sorted(detected[device][dev_input]['id']):
+                    if dev_input not in self.tablets[devID][idx]:
+                        self.tablets[devID][idx][dev_input] = {}
+                    self.tablets[devID][idx][dev_input]['id'] = instance
+
+            # remove devices that are not available
+            for dev in self.tablets.keys():
+                for _device in self.tablets[dev]:
+                    keys_to_delete = []
+                    for _id in ['touch', 'stylus', 'eraser', 'cursor', 'pad']:
+                        if _id in _device.keys():
+                            if 'id' not in _device[_id].keys():
+                                keys_to_delete.append(_id)
+                    for _id in keys_to_delete:
+                        del _device[_id]
+
+            # except:
+            #     warning = QMessageBox(QMessageBox.Warning, "Unknown Device",
+            #                           "Device information for \"%s\" not found." % dev_type)
+            #     warning.exec_()
 
 
     def __get_libwacom_data(self):
-        p = subprocess.Popen("libwacom-list-local-devices --database %s" % self.db_path, shell=True,
+        p = subprocess.Popen("libwacom-list-local-devices --database %s --format datafile" % self.db_path, shell=True,
                              stdout=subprocess.PIPE)
         output = p.communicate()[0].decode('utf-8').split('\n')
         cur_device = None

@@ -34,8 +34,9 @@ class Pad(QTabWidget, pad_ui.Ui_PadWidget):
         self.reset.clicked.connect(self.set_default)
         self.buttons = {'left': [], 'right': [], 'top': [], 'bottom': []}
         self.setFocusPolicy(Qt.NoFocus)
-        desktop = os.environ["DESKTOP_SESSION"]
-        if (desktop in ["mate", "gnome-classic"]):
+        desktop = os.environ.get("XDG_CURRENT_DESKTOP", "").lower()
+        desktop = desktop.split(":")[-1]
+        if (desktop in ["mate", "gnome"]):
             self.load_dconf()
         elif (desktop == "1-kde-plasma-standard"):
             self.load_kde()

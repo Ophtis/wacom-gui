@@ -181,15 +181,16 @@ class WacomGui(QMainWindow, wacom_menu.Ui_MainWindow):
 
     def emptyConfig(self, dev, dev_id):
         config = {}
-        for input in self.tablet_data.tablets[dev][dev_id].keys():
-            if input in ['pad', 'stylus', 'eraser', 'touch', 'cursor']:
-                config[input] = {}
-                if input in ['pad', 'stylus', 'eraser']:
-                    config[input]['buttons'] = {}
-                    if input == 'pad':
-                        buttons = self.tablet_data.tablets[dev][dev_id][input]['buttons']
-                        for button in buttons.keys():
-                            config['pad']['buttons'][button] = 'Default'
+        for _input in self.tablet_data.tablets[dev][dev_id].keys():
+            if _input not in ['pad', 'stylus', 'eraser', 'touch', 'cursor']:
+                continue
+            config[_input] = {}
+            if _input in ['pad', 'stylus', 'eraser']:
+                config[_input]['buttons'] = {}
+                if _input == 'pad' and 'buttons' in self.tablet_data.tablets[dev][dev_id][_input]:
+                    buttons = self.tablet_data.tablets[dev][dev_id][_input]['buttons']
+                    for button in buttons.keys():
+                        config['pad']['buttons'][button] = 'Default'
         return config
 
     def verifyConfigRemove(self):
