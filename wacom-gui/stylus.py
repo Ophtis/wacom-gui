@@ -1,10 +1,10 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-from PyQt5.QtCore import *
-from PyQt5.QtGui import *
-from PyQt5.QtWidgets import *
-from PyQt5.QtSvg import *
+from PySide6.QtCore import *
+from PySide6.QtGui import *
+from PySide6.QtWidgets import *
+from PySide6.QtSvg import *
 from hotkeys import HotkeyWidget
 import stylus_ui
 import os
@@ -285,7 +285,7 @@ class WacomAttribSlider(QWidget):
         else:
             self.slider.setValue(self.default)
         self.slider.setTickInterval(ticks)
-        self.slider.setTickPosition(self.slider.TicksBelow)
+        self.slider.setTickPosition(QSlider.TickPosition.TicksBelow)
         self.value = QLabel(str(self.slider.value()))
         self.value.setStyleSheet("QLabel { "
                                  "font-weight: bold; color: #6DD7E8; "
@@ -379,7 +379,7 @@ class WacomPressure(QWidget):
             # TODO: allow custom values
             self.slider.setValue(0)
         self.slider.setTickInterval(1)
-        self.slider.setTickPosition(self.slider.TicksBelow)
+        self.slider.setTickPosition(QSlider.TickPosition.TicksBelow)
         self.value = QLabel("[%s]" % ",".join(str(i) for i in self.setting))
         self.value.setStyleSheet("QLabel { font-weight: bold; color: #6DD7E8; "
                                  "background-color: #444444; padding-left: 1px; "

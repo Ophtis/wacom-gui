@@ -1,85 +1,103 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'keystroke_dialog.ui'
-#
-# Created: Wed Oct 24 15:09:24 2018
-#      by: PyQt5 UI code generator 4.10.1
-#
-# WARNING! All changes made in this file will be lost!
+################################################################################
+## Form generated from reading UI file 'keystroke.ui'
+##
+## Created by: Qt User Interface Compiler version 6.9.0
+##
+## WARNING! All changes made in this file will be lost when recompiling UI file!
+################################################################################
 
-from PyQt5 import QtCore, QtGui
-
-try:
-    _fromUtf8 = QtCore.QString.fromUtf8
-except AttributeError:
-    def _fromUtf8(s):
-        return s
-
-try:
-    _encoding = QtGui.QApplication.UnicodeUTF8
-    def _translate(context, text, disambig):
-        return QtGui.QApplication.translate(context, text, disambig, _encoding)
-except AttributeError:
-    def _translate(context, text, disambig):
-        return QtGui.QApplication.translate(context, text, disambig)
+from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
+    QMetaObject, QObject, QPoint, QRect,
+    QSize, QTime, QUrl, Qt)
+from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
+    QFont, QFontDatabase, QGradient, QIcon,
+    QImage, QKeySequence, QLinearGradient, QPainter,
+    QPalette, QPixmap, QRadialGradient, QTransform)
+from PySide6.QtWidgets import (QAbstractButton, QApplication, QDialog, QDialogButtonBox,
+    QFormLayout, QHBoxLayout, QLabel, QLineEdit,
+    QPushButton, QSizePolicy, QWidget)
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
-        Dialog.setObjectName(_fromUtf8("Dialog"))
+        if not Dialog.objectName():
+            Dialog.setObjectName(u"Dialog")
         Dialog.resize(625, 139)
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Fixed)
+        sizePolicy = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(Dialog.sizePolicy().hasHeightForWidth())
         Dialog.setSizePolicy(sizePolicy)
-        self.formLayoutWidget = QtGui.QWidget(Dialog)
-        self.formLayoutWidget.setGeometry(QtCore.QRect(10, 10, 601, 121))
-        self.formLayoutWidget.setObjectName(_fromUtf8("formLayoutWidget"))
-        self.formLayout = QtGui.QFormLayout(self.formLayoutWidget)
-        self.formLayout.setFieldGrowthPolicy(QtGui.QFormLayout.AllNonFixedFieldsGrow)
-        self.formLayout.setMargin(0)
-        self.formLayout.setObjectName(_fromUtf8("formLayout"))
-        self.keystrokesLabel = QtGui.QLabel(self.formLayoutWidget)
-        self.keystrokesLabel.setObjectName(_fromUtf8("keystrokesLabel"))
-        self.formLayout.setWidget(0, QtGui.QFormLayout.LabelRole, self.keystrokesLabel)
-        self.keystrokeinput = QtGui.QLineEdit(self.formLayoutWidget)
+        self.formLayoutWidget = QWidget(Dialog)
+        self.formLayoutWidget.setObjectName(u"formLayoutWidget")
+        self.formLayoutWidget.setGeometry(QRect(10, 10, 601, 121))
+        self.formLayout = QFormLayout(self.formLayoutWidget)
+        self.formLayout.setObjectName(u"formLayout")
+        self.formLayout.setFieldGrowthPolicy(QFormLayout.AllNonFixedFieldsGrow)
+        self.formLayout.setContentsMargins(0, 0, 0, 0)
+        self.keystrokesLabel = QLabel(self.formLayoutWidget)
+        self.keystrokesLabel.setObjectName(u"keystrokesLabel")
+
+        self.formLayout.setWidget(0, QFormLayout.ItemRole.LabelRole, self.keystrokesLabel)
+
+        self.keystrokeinput = QLineEdit(self.formLayoutWidget)
+        self.keystrokeinput.setObjectName(u"keystrokeinput")
         self.keystrokeinput.setReadOnly(True)
-        self.keystrokeinput.setObjectName(_fromUtf8("keystrokeinput"))
-        self.formLayout.setWidget(0, QtGui.QFormLayout.FieldRole, self.keystrokeinput)
-        self.shortcutLabel = QtGui.QLabel(self.formLayoutWidget)
-        self.shortcutLabel.setObjectName(_fromUtf8("shortcutLabel"))
-        self.formLayout.setWidget(1, QtGui.QFormLayout.LabelRole, self.shortcutLabel)
-        self.shortcutinput = QtGui.QLineEdit(self.formLayoutWidget)
-        self.shortcutinput.setObjectName(_fromUtf8("shortcutinput"))
-        self.formLayout.setWidget(1, QtGui.QFormLayout.FieldRole, self.shortcutinput)
-        self.runLabel = QtGui.QLabel(self.formLayoutWidget)
-        self.runLabel.setObjectName(_fromUtf8("runLabel"))
-        self.formLayout.setWidget(2, QtGui.QFormLayout.LabelRole, self.runLabel)
-        self.runinput = QtGui.QLineEdit(self.formLayoutWidget)
-        self.runinput.setObjectName(_fromUtf8("runinput"))
-        self.formLayout.setWidget(2, QtGui.QFormLayout.FieldRole, self.runinput)
-        self.horizontalLayout_2 = QtGui.QHBoxLayout()
-        self.horizontalLayout_2.setObjectName(_fromUtf8("horizontalLayout_2"))
-        self.keystroke = QtGui.QPushButton(self.formLayoutWidget)
-        self.keystroke.setMaximumSize(QtCore.QSize(100, 16777215))
-        self.keystroke.setObjectName(_fromUtf8("keystroke"))
+
+        self.formLayout.setWidget(0, QFormLayout.ItemRole.FieldRole, self.keystrokeinput)
+
+        self.shortcutLabel = QLabel(self.formLayoutWidget)
+        self.shortcutLabel.setObjectName(u"shortcutLabel")
+
+        self.formLayout.setWidget(1, QFormLayout.ItemRole.LabelRole, self.shortcutLabel)
+
+        self.shortcutinput = QLineEdit(self.formLayoutWidget)
+        self.shortcutinput.setObjectName(u"shortcutinput")
+
+        self.formLayout.setWidget(1, QFormLayout.ItemRole.FieldRole, self.shortcutinput)
+
+        self.runLabel = QLabel(self.formLayoutWidget)
+        self.runLabel.setObjectName(u"runLabel")
+
+        self.formLayout.setWidget(2, QFormLayout.ItemRole.LabelRole, self.runLabel)
+
+        self.runinput = QLineEdit(self.formLayoutWidget)
+        self.runinput.setObjectName(u"runinput")
+
+        self.formLayout.setWidget(2, QFormLayout.ItemRole.FieldRole, self.runinput)
+
+        self.horizontalLayout_2 = QHBoxLayout()
+        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
+        self.keystroke = QPushButton(self.formLayoutWidget)
+        self.keystroke.setObjectName(u"keystroke")
+        self.keystroke.setMaximumSize(QSize(100, 16777215))
+
         self.horizontalLayout_2.addWidget(self.keystroke)
-        self.buttonBox = QtGui.QDialogButtonBox(self.formLayoutWidget)
-        self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
-        self.buttonBox.setStandardButtons(QtGui.QDialogButtonBox.Cancel|QtGui.QDialogButtonBox.Ok)
-        self.buttonBox.setObjectName(_fromUtf8("buttonBox"))
+
+        self.buttonBox = QDialogButtonBox(self.formLayoutWidget)
+        self.buttonBox.setObjectName(u"buttonBox")
+        self.buttonBox.setOrientation(Qt.Horizontal)
+        self.buttonBox.setStandardButtons(QDialogButtonBox.Cancel|QDialogButtonBox.Ok)
+
         self.horizontalLayout_2.addWidget(self.buttonBox)
-        self.formLayout.setLayout(3, QtGui.QFormLayout.FieldRole, self.horizontalLayout_2)
+
+
+        self.formLayout.setLayout(3, QFormLayout.ItemRole.FieldRole, self.horizontalLayout_2)
+
 
         self.retranslateUi(Dialog)
-        QtCore.QObject.connect(self.buttonBox, QtCore.SIGNAL(_fromUtf8("accepted()")), Dialog.accept)
-        QtCore.QObject.connect(self.buttonBox, QtCore.SIGNAL(_fromUtf8("rejected()")), Dialog.reject)
-        QtCore.QMetaObject.connectSlotsByName(Dialog)
+        self.buttonBox.accepted.connect(Dialog.accept)
+        self.buttonBox.rejected.connect(Dialog.reject)
+
+        QMetaObject.connectSlotsByName(Dialog)
+    # setupUi
 
     def retranslateUi(self, Dialog):
-        Dialog.setWindowTitle(_translate("Dialog", "Dialog", None))
-        self.keystrokesLabel.setText(_translate("Dialog", "Keystrokes", None))
-        self.shortcutLabel.setText(_translate("Dialog", "Shortcut Name", None))
-        self.runLabel.setText(_translate("Dialog", "Run Command", None))
-        self.keystroke.setText(_translate("Dialog", "Keystroke...", None))
+        Dialog.setWindowTitle(QCoreApplication.translate("Dialog", u"Dialog", None))
+        self.keystrokesLabel.setText(QCoreApplication.translate("Dialog", u"Keystrokes", None))
+        self.shortcutLabel.setText(QCoreApplication.translate("Dialog", u"Shortcut Name", None))
+        self.runLabel.setText(QCoreApplication.translate("Dialog", u"Run Command", None))
+        self.keystroke.setText(QCoreApplication.translate("Dialog", u"Keystroke...", None))
+    # retranslateUi
 

@@ -1,9 +1,9 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-from PyQt5.QtCore import *
-from PyQt5.QtWidgets import *
-from PyQt5.QtGui import *
+from PySide6.QtCore import *
+from PySide6.QtWidgets import *
+from PySide6.QtGui import *
 import sys
 import os
 from os.path import expanduser
@@ -20,7 +20,7 @@ def QString(s):
 	return s
 
 class WacomGui(QMainWindow, wacom_menu.Ui_MainWindow):
-    buttonClicked = pyqtSignal(int)
+    buttonClicked = Signal(int)
     def __init__(self, parent=None):
         super(WacomGui, self).__init__(parent)
         self.setupUi(self)
@@ -87,9 +87,9 @@ class WacomGui(QMainWindow, wacom_menu.Ui_MainWindow):
         # load first tool found
         self.toolSelect(self.toolButtons.btn_grp.checkedId())
         # init button functions
-        self.tabletButtons.btn_grp.buttonClicked['int'].connect(self.tabletSelect)
-        self.toolButtons.btn_grp.buttonClicked['int'].connect(self.toolSelect)
-        self.configButtons.btn_grp.buttonClicked['int'].connect(self.configSelect)
+        self.tabletButtons.btn_grp.idClicked['int'].connect(self.tabletSelect)
+        self.toolButtons.btn_grp.idClicked['int'].connect(self.toolSelect)
+        self.configButtons.btn_grp.idClicked['int'].connect(self.configSelect)
         # set window icon
         windowIconPath = os.path.join(self.cwd, 'icons/devices/generic.png')
         self.setWindowIcon(QIcon(windowIconPath))
@@ -487,7 +487,7 @@ class ButtonLayout:
         self.deleteItemsOfLayout(self.layout.layout())
 
 class ButtonGroup(QObject):
-    buttonClicked = pyqtSignal(int)
+    buttonClicked = Signal(int)
 
     def __init__(self):
         super(ButtonGroup, self).__init__()
@@ -759,7 +759,7 @@ def main():
     if opts.load:
         form.quickLoad()
     form.show()
-    sys.exit(app.exec_())
+    sys.exit(app.exec())
 
 
 if __name__ == '__main__':

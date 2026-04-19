@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-from PyQt5 import QtCore, QtGui
+from PySide6 import QtCore, QtGui
 import sys, os, re
 
 class touch(QtGui.QWidget):

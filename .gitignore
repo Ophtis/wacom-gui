@@ -460,3 +460,5 @@ unittest/svgparse/data/layouts/xp-pen-deco-mw.svg
 unittest/svgparse/data/layouts/xp-pen-deco-pro-s-m-sw-mw.svg
 unittest/svgparse/data/layouts/xp-pen-deco01-v2.svg
 unittest/svgparse/data/layouts/xp-pen-star03.svg
+
+venv

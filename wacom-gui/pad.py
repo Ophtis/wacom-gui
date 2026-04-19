@@ -4,10 +4,11 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-from PyQt5.QtCore import *
-from PyQt5.QtGui import *
-from PyQt5.QtWidgets import *
-from PyQt5.QtSvg import *
+from PySide6.QtCore import *
+from PySide6.QtGui import *
+from PySide6.QtWidgets import *
+from PySide6.QtSvg import *
+from PySide6.QtSvgWidgets import *
 from hotkeys import HotkeyWidget
 from stylus import WacomAttribSlider
 import pad_ui

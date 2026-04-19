@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
-from PyQt5 import QtWebKit
-from PyQt5 import QtCore, QtGui
+from PySide6 import QtWebKit
+from PySide6 import QtCore, QtGui
 import sys, os, re
 
 class Help(QtGui.QWidget):

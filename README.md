@@ -9,7 +9,7 @@ These instructions will help you get a copy of the project up and running on yor
 
 ### Prerequisites
 You will require a few packages to get this working on your system:
-- PyQt5
+- PySide6
 
 ### Installing
 - Running from source

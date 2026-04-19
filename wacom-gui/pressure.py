@@ -1,11 +1,11 @@
 #!/usr/bin/python
 
-#from PyQt5.QtGui import QWidget, QPolygonF, QPainter, QPen, QBrush, QColor, \
+#from PySide6.QtGui import QWidget, QPolygonF, QPainter, QPen, QBrush, QColor, \
 #    QApplication, QIcon, QVBoxLayout, QHBoxLayout, QPushButton, QPainterPath,\
 #    QFont, QLayout, QGraphicsScene, QGraphicsView, QPixmap, QGraphicsPixmapItem, \
 #    QTabletEvent, QLabel, QSplitter, QRadialGradient, QImage
-#from PyQt5.QtCore import QObject, SIGNAL, SLOT, QPointF, Qt, QRectF, QPointF, QString, QRect
-from PyQt5 import QtCore,QtGui
+#from PySide6.QtCore import QObject, SIGNAL, SLOT, QPointF, Qt, QRectF, QPointF, QString, QRect
+from PySide6 import QtCore,QtGui
 import sys, os
 
 class pressureSettings(QtGui.QWidget):
