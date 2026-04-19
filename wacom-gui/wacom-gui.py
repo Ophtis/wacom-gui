@@ -753,6 +753,9 @@ def toggleDisplay():
 def main():
     loadToggleShortcut()
     app = QApplication(sys.argv)
+
+    QGuiApplication.styleHints().setColorScheme(Qt.ColorScheme.Light)
+
     opts = parseArgs()
     if opts.toggle:
         toggleDisplay()
